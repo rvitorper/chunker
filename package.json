@@ -1,0 +1,30 @@
+{
+  "name": "chunker",
+  "version": "1.0.0",
+  "description": "A node module that allows large files to be transferred",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rvitorper/chunker.git"
+  },
+  "keywords": [
+    "Large",
+    "Files",
+    "Transfer",
+    "Upload",
+    "Download"
+  ],
+  "author": "Ramon Vitor <ramonvitor3@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rvitorper/chunker/issues"
+  },
+  "homepage": "https://github.com/rvitorper/chunker#readme",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5"
+  }
+}
