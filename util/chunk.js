@@ -4,7 +4,6 @@ var router = express.Router()
 
 var options = require('./options')
 var manager = require('./manager')
-var validator = require('./validator')
 
 router.route('/')
 .post(bodyParser.json(),
@@ -13,9 +12,9 @@ router.route('/')
 	next()
     },
     function(req, res) {
-	var obj = validator({file: req.body.file, checksum: req.body.checksum, size: req.body.size})
+	var obj = manager.getFile(req.body.id)
 	if(obj) {
-	    obj = manager.addFile(obj.path, obj.size, obj.checksum)
+	    
 	    res.status(200).json({id: obj.id, offset: 0, expires: obj.expires})
 	}
 	else {
@@ -24,4 +23,4 @@ router.route('/')
     }
 )
 
-module.exports = router
+module.exports = router 

@@ -4,7 +4,8 @@
   "description": "A node module that allows large files to be transferred",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "python test.py",
+    "setup": "python setup.py"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,11 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "mocha": "^2.2.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "mime": "^1.3.4",
+    "multer": "^1.0.3"
   }
 }
