@@ -7,12 +7,7 @@ var manager = require('./manager')
 var validator = require('./validator')
 
 router.route('/')
-.post(bodyParser.json(),
-    function(err, req, res, next) {
-	if(err) return res.status(500).send('Bad JSON provided')
-	next()
-    },
-    function(req, res) {
+.post(function(req, res) {
 	var obj = validator({file: req.body.file, checksum: req.body.checksum, size: req.body.size})
 	if(obj) {
 	    obj = manager.addFile(obj.path, obj.size, obj.checksum)
