@@ -1,6 +1,6 @@
 var options = require('./../options')
 
-module.exports = function(requestJSON) {
+var fileValidator = function(requestJSON) {
     var fileRegex = /^\w{2,15}\.\w{1,15}$/
     var sizeRegex = /^[1-9]([0-9]+)?$/
     var checksumRegex = /^[a-z0-9]+$/
@@ -11,4 +11,18 @@ module.exports = function(requestJSON) {
 	return {path: requestJSON.file, size: requestJSON.size, checksum: requestJSON.checksum}
     }
     return undefined
+}
+
+var chunkValidator = function(requestJSON) {
+    
+}
+
+var endValidator = function(requestJSON) {
+    
+}
+
+module.exports = {
+    file: fileValidator,
+    chunk: chunkValidator,
+    end: endValidator
 }
