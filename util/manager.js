@@ -1,4 +1,4 @@
-var options = require('./options')
+var options = require('./../options')
 var crypto = require('crypto')
 
 var files = {}
@@ -19,7 +19,8 @@ var addFile = function(path, size, checksum) {
 	expires: expirationDate,
 	path: path,
 	size: size,
-	checksum: checksum
+	checksum: checksum,
+	offset: 0
     }
     return files[id]
 }

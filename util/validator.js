@@ -1,4 +1,4 @@
-var options = require('./options')
+var options = require('./../options')
 
 module.exports = function(requestJSON) {
     var fileRegex = /^\w{2,15}\.\w{1,15}$/

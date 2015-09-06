@@ -2,7 +2,7 @@ var bodyParser = require('body-parser')
 var express = require('express')
 var router = express.Router()
 
-var options = require('./options')
+var options = require('./../options')
 var manager = require('./manager')
 var validator = require('./validator')
 
