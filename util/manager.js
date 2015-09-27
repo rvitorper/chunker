@@ -1,8 +1,8 @@
 var options = require('./../options')
 var crypto = require('crypto')
-
+//TODO: comment
 var files = {}
-
+//TODO: create a real db with every file and make this module access that db
 //This method watches a file through its id
 var addFile = function(path, size, checksum) {
     var timeNow = (+new Date())
@@ -14,13 +14,13 @@ var addFile = function(path, size, checksum) {
     var fileDigester = crypto.createHash('sha1') //this will be added to the file object so that everytime a chunk is added, it will be updated
     //adding the file
     files[id] = {
-	id: id,
-	digester: fileDigester,
-	expires: expirationDate,
-	path: path,
-	size: size,
-	checksum: checksum,
-	offset: 0
+		id: id,
+		digester: fileDigester,
+		expires: expirationDate,
+		path: options.savePath + path,
+		size: size,
+		checksum: checksum,
+		offset: 0
     }
     return files[id]
 }
@@ -29,8 +29,8 @@ var addFile = function(path, size, checksum) {
 var getFile = function(id) {
     var call = files[id]
     if(call && (+new Date()) > call.expires) {
-	delete files[id]
-	return undefined
+		delete files[id]
+		return undefined
     }
     return call
 }
@@ -39,12 +39,12 @@ var optimize = function() {
     var timeNow = (+new Date())
     var list = []
     for(key in files) {
-	if(files[key].expires < timeNow) {
-	    list.push(key)
-	}
+		if(files[key].expires < timeNow) {
+			list.push(key)
+		}
     }
     for(key in list) {
-	delete files[key]
+		delete files[key]
     }
 }
 
