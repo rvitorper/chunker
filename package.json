@@ -4,8 +4,7 @@
   "description": "A node module that allows large files to be transferred",
   "main": "index.js",
   "scripts": {
-    "test": "python test.py",
-    "setup": "python setup.py"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

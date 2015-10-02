@@ -1,25 +1,27 @@
-var options = require('./../options')
+var options = require('./options')
 var crypto = require('crypto')
 //TODO: comment
 var files = {}
+
+var HASH = 'sha1'
+
 //TODO: create a real db with every file and make this module access that db
 //This method watches a file through its id
-var addFile = function(path, size, checksum) {
+var addFile = function(path, size) {
     var timeNow = (+new Date())
-    var expirationDate = timeNow + options.expires
-    var id = '' + timeNow + options.secret //this works because Node does not run the code in multiple threads
-    var digester = crypto.createHash('sha1') //this will create the id hash
+    var expirationDate = timeNow + Number(options.get().expires)
+    var id = '' + timeNow + options.get().secret //this works because Node does not run the code in multiple threads
+    var digester = crypto.createHash(HASH) //this will create the id hash
     digester.update(id)
     id = digester.digest('hex')
-    var fileDigester = crypto.createHash('sha1') //this will be added to the file object so that everytime a chunk is added, it will be updated
+    var fileDigester = crypto.createHash(HASH) //this will be added to the file object so that everytime a chunk is added, it will be updated
     //adding the file
     files[id] = {
 		id: id,
 		digester: fileDigester,
 		expires: expirationDate,
-		path: options.savePath + path,
-		size: size,
-		checksum: checksum,
+		path: options.get().savePath + path,
+		size: Number(size),
 		offset: 0
     }
     return files[id]
