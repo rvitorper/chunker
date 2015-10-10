@@ -16,7 +16,7 @@ var chunkValidator = function(requestJSON) {
 	if(requestJSON.chunk && requestJSON.id &&
 		requestJSON.chunk.length > 0 &&
 		idRegex.test(requestJSON.id)) {
-		return {id: requestJSON.id}//, chunk: requestJSON.chunk}
+		return {id: requestJSON.id, chunk: requestJSON.chunk}
 	}
     return undefined
 }
@@ -32,7 +32,6 @@ var endValidator = function(requestJSON) {
     return undefined
 }
 
-//TODO: test this validator
 var optionsValidator = function(requestJSON) {
 	var numberRegex = /^[1-9]([0-9]{1,14})?$/
 	var secretRegex = /^.{5,15}$/
@@ -45,6 +44,11 @@ var optionsValidator = function(requestJSON) {
 		return {secret: requestJSON.secret, savePath: requestJSON.savePath, maxChunkSize: Number(requestJSON.maxChunkSize), expires: Number(requestJSON.expires)}
 	}
 	return undefined
+}
+
+var dbValidator = function(requestJSON) {
+	if(requestJSON.addFile && requestJSON.appendToFile && requestJSON.endFile) return requestJSON
+	else return undefined
 }
 
 module.exports = {

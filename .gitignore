@@ -1,3 +1,5 @@
 node_modules
 options.json
 test.js
+test_strings
+.gitignore
