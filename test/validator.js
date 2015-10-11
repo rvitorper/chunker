@@ -40,6 +40,7 @@ describe('Validator', function() {
 		'.2',
 		'55.5',
 		'-5',
+		'16666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666',
 		''
 	]
 	
@@ -47,7 +48,6 @@ describe('Validator', function() {
 		'15',
 		'199999',
 		'100000',
-		'16666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666',
 		'3492'
 	]
 	
@@ -215,7 +215,7 @@ describe('Validator', function() {
 			for(var i = 0; i < goodChunks.length; i++) {
 				for(var j = 0; j < goodIds.length; j++) {
 					var id = {id: goodIds[j], chunk: goodChunks[i]}
-					expect(validator.chunk(id)).to.deep.equal({id: goodIds[j]})
+					expect(validator.chunk(id)).to.deep.equal({id: goodIds[j], chunk: goodChunks[i]})
 				}
 			}
 		})

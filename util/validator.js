@@ -1,8 +1,23 @@
-//TODO: comment
+/*
+ * This files massages the data provided by the user.
+ * It may be replaced by another validator, however 
+ * the code is not yet flexible to allow this. So:
+ * 
+ * TODO: enable flexibility to change the validator
+ * 
+ * Each validator checks a few conditions and returns 
+ * the same or nearly the same requestJSON. Every validator
+ * has its conditions above it.
+ */
 
+
+//Conditions:
+//requestJSON has to have 'file' and 'size'
+//'file' has to be in a format such as 'X.Y' where X has between 1 and 90 chars; Y has between 1 and 15 chars. Char in a sense that is in [a-zA-Z0-9\.]
+//'size' has to be a number between 1 and 199999999999999, representing the amount of bytes in a file
 var fileValidator = function(requestJSON) {
     var fileRegex = /^[\w\.]{1,90}\.\w{1,15}$/
-    var sizeRegex = /^[1-9]([0-9]+)?$/
+    var sizeRegex = /^[1-9]([0-9]{1,14})?$/
     if(requestJSON.file && requestJSON.size &&
 		fileRegex.test(requestJSON.file) &&
 		sizeRegex.test(requestJSON.size)) {
@@ -11,6 +26,10 @@ var fileValidator = function(requestJSON) {
     return undefined
 }
 
+//Conditions:
+//requestJSON has to have 'id' and 'chunk'
+//'id' has to be a valid SHA1 hash, although this only tests for containing only letters and numbers
+//'chunk' has to be non-empty and pretty much anything
 var chunkValidator = function(requestJSON) {
 	var idRegex = /^[a-z0-9]{40}$/
 	if(requestJSON.chunk && requestJSON.id &&
@@ -21,6 +40,10 @@ var chunkValidator = function(requestJSON) {
     return undefined
 }
 
+//Conditions:
+//requestJSON has to have 'id' and 'checksum'
+//'id' has to be a valid SHA1 hash, although this only tests for containing only letters and numbers
+//'checksum' has to be a valid SHA1 hash, although this only tests for containing only letters and numbers
 var endValidator = function(requestJSON) {
 	var checksumRegex = /^[a-z0-9]{40}$/
 	var idRegex = /^[a-z0-9]{40}$/
@@ -32,6 +55,12 @@ var endValidator = function(requestJSON) {
     return undefined
 }
 
+//Conditions:
+//requestJSON has to have 'secret', 'savePath', 'maxChunkSize' and 'expires'
+//'secret' has to be any word with length between 5 and 15 characters
+//'savePath' has to be a string in the format '/a/valid/path/'
+//'maxChunkSize' has to be a number between 1 and 199999999999999
+//'expires' has to be a number between 1 and 199999999999999
 var optionsValidator = function(requestJSON) {
 	var numberRegex = /^[1-9]([0-9]{1,14})?$/
 	var secretRegex = /^.{5,15}$/
@@ -46,6 +75,8 @@ var optionsValidator = function(requestJSON) {
 	return undefined
 }
 
+//Conditions:
+//requestJSON has to have 'addFile', 'appendToFile' and 'endFile'
 var dbValidator = function(requestJSON) {
 	if(requestJSON.addFile && requestJSON.appendToFile && requestJSON.endFile) return requestJSON
 	else return undefined
