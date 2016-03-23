@@ -268,4 +268,11 @@ describe('Validator', function() {
 			}
 		})
 	})
+	
+	describe('#db', function() {
+		it('should return the same JSON on this test', function() {
+			var test = {addFile: function() {}, endFile: function() {}, appendToFile: function() {}}
+			expect(validator.db(test)).to.deep.equal(test)
+		})
+	})
 })

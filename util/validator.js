@@ -86,5 +86,6 @@ module.exports = {
     file: fileValidator,
     chunk: chunkValidator,
     end: endValidator,
-	options: optionsValidator
+	options: optionsValidator,
+	db: dbValidator
 }
