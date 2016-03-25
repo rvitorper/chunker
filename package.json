@@ -1,6 +1,6 @@
 {
   "name": "chunkme",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A node module that allows large files to be transferred",
   "main": "index.js",
   "scripts": {
