@@ -1,11 +1,11 @@
 /*
  * This files massages the data provided by the user.
- * It may be replaced by another validator, however 
+ * It may be replaced by another validator, however
  * the code is not yet flexible to allow this. So:
- * 
+ *
  * TODO: enable flexibility to change the validator
- * 
- * Each validator checks a few conditions and returns 
+ *
+ * Each validator checks a few conditions and returns
  * the same or nearly the same requestJSON. Every validator
  * has its conditions above it.
  */
@@ -16,7 +16,7 @@
 //'file' has to be in a format such as 'X.Y' where X has between 1 and 90 chars; Y has between 1 and 15 chars. Char in a sense that is in [a-zA-Z0-9\.]
 //'size' has to be a number between 1 and 199999999999999, representing the amount of bytes in a file
 var fileValidator = function(requestJSON) {
-    var fileRegex = /^[\w\.]{1,90}\.\w{1,15}$/
+    var fileRegex = /^[-\w\.]{1,90}\.[\w-]{1,15}$/
     var sizeRegex = /^[1-9]([0-9]{1,14})?$/
     if(requestJSON.file && requestJSON.size &&
 		fileRegex.test(requestJSON.file) &&
